@@ -13,7 +13,7 @@ class CreateUserReviewTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_review', function (Blueprint $table) {
+        Schema::create('review', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('order_id')->unsgigned();
             $table->integer('product_id')->unsigned();
