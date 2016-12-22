@@ -25,7 +25,10 @@ CREATE TABLE review (
   CONSTRAINT rating_type CHECK (rating >= 0 AND rating <= 5),
   created_at timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+INSERT INTO users(name, email, password) VALUES('Rizqy Faishal','rizqyfaishal@hotmail.com','$2y$10$ZLSIicJlJ4Qp7NQpRLyFIuzeob/vzxJrMz3h259Q2f4EAruF6Nlie');
 
   

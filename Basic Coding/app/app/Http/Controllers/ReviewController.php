@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserReviewRequest;
 use App\Review;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ReviewController extends Controller
 {
@@ -43,24 +43,41 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserReviewRequest $request)
+    public function store(Request $request)
     {
-        $user = User::where('id' ,'=',$request->id)->first();
-        $review = Review::create($request->all());
-        $save = $user->reqviews->save($review);
-        if($save){
-            return response()->json([
-                'status' => 'ok',
-                'data' => $review
-            ]);
-        } else {
+        $validator = Validator::make($request->all(),[
+            'rating' => 'required|numeric|between:0,5',
+            'order_id' => 'required|integer',
+            'product_id' => 'required|integer',
+            'user_id' => 'required|integer',
+            'review' => 'required|max:255|min:2'
+        ]);
+        if($validator->fails()){
             return response()->json([
                 'status' => 'ok',
                 'data' => [
-                    'message' => 'an error occured'
+                    'message' => 'error',
+                    'errors' => $validator->errors()
                 ]
             ]);
+        } else {
+            $user = User::where('id' ,'=',$request->user_id)->first();
+            $review = Review::create($request->all());
+            if($review){
+                return response()->json([
+                    'status' => 'ok',
+                    'data' => $review
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 'ok',
+                    'data' => [
+                        'message' => 'an error occured'
+                    ]
+                ]);
+            }
         }
+
     }
 
     /**
@@ -110,32 +127,49 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserReviewRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $review = Review::where('id','=',$id)->first();
-        if($review){
-            $status = $review->update($request->all());
-            if($status){
-                return response()->json([
-                    'status' => 'ok',
-                    'data' => $review
-                ]);
+        $validator = Validator::make($request->all(),[
+            'rating' => 'required|numeric|between:0,5',
+            'order_id' => 'required|integer',
+            'product_id' => 'required|integer',
+            'user_id' => 'required|integer',
+            'review' => 'required|max:255|min:2'
+        ]);
+        if($validator->fails()){
+            return response()->json([
+                'status' => 'ok',
+                'data' => [
+                    'message' => 'error',
+                    'errors' => $validator->errors()
+                ]
+            ]);
+        } else {
+            $review = Review::where('id','=',$id)->first();
+            if($review){
+                $status = $review->update($request->all());
+                if($status){
+                    return response()->json([
+                        'status' => 'ok',
+                        'data' => $review
+                    ]);
+                } else {
+                    return response()->json([
+                        'status' => 'ok',
+                        'data' => [
+                            'message' => 'an error occured'
+                        ]
+                    ]);
+                }
+
             } else {
                 return response()->json([
-                    'status' => 'ok',
+                    'status' => 'not found',
                     'data' => [
-                        'message' => 'an error occured'
+                        'message' => 'review with id: '.$id.' not found.'
                     ]
                 ]);
             }
-
-        } else {
-            return response()->json([
-                'status' => 'not found',
-                'data' => [
-                    'message' => 'review with id: '.$id.' not found.'
-                ]
-            ]);
         }
     }
 
