@@ -103,8 +103,8 @@
       <file leaf-file-name="ReviewController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/app/Http/Controllers/ReviewController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1666">
-              <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
+            <state relative-caret-position="132">
+              <caret line="40" column="38" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
               <folding>
                 <element signature="e#40#55#0#PHP" expanded="true" />
               </folding>
@@ -471,12 +471,12 @@
       <option name="presentableId" value="Default" />
       <updated>1482315783799</updated>
       <workItem from="1482315785816" duration="1420000" />
-      <workItem from="1482417068869" duration="8892000" />
+      <workItem from="1482417068869" duration="12134000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10312000" />
+    <option name="totallyTimeSpent" value="13554000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -736,8 +736,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/app/Http/Controllers/ReviewController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1666">
-          <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
+        <state relative-caret-position="132">
+          <caret line="40" column="38" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
           <folding>
             <element signature="e#40#55#0#PHP" expanded="true" />
           </folding>
