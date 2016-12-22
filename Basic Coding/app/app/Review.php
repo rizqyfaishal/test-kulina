@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-    protected $table = 'user_review';
+    protected $table = 'review';
 
     public function author(){
         return $this->belongsTo('App\User');

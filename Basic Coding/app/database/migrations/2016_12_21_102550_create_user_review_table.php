@@ -20,6 +20,13 @@ class CreateUserReviewTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->float('rating',2,1);
             $table->string('review');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
